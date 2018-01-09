@@ -1,0 +1,16 @@
+{
+   "Time":"2018-01-07 11:24:55",
+   "Battery Voltage":26.0101318359375,
+   "Battery SOC":"Green-Yellow 50%",
+   "Battery Sensed Voltage":0.0,
+   "Battery Target Voltage":0.0,
+   "Battery Current":0.0,
+   "Charge State":"Night",
+   "Battery Power":0.0,
+   "RTS Temp":25,
+   "Heatsink Temp":20,
+   "Battery Temp":25,
+   "Solar Voltage":0.076904296875,
+   "Solar Current":0.0,
+   "Solar Power":0.0
+}
