@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Table from './Components/Table'
 import logo from './logo.svg';
+import logowide from './logo-wide.svg';
 import './App.css';
 import './tristar.json'
 
@@ -9,16 +10,19 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">ModBox Details</h1>
+          <img src={logowide} className="App-logo" alt="logo" />
         </header>
         <p className="App-intro">
         <Table/>
         </p>
-          <p></p><p></p>
-          For more details go to: <a href="http://www.ModEnergySystems.com"> ModBox</a>
-          <p></p>
-         </div>
+        <p></p><p></p>
+        <a href="http://www.ModEnergySystems.com">
+        <img src={logo} className="App-logo2" alt="logo" />
+        <p></p>Modular Energy Systems</a>
+        <p>Technical Support: </p>
+        <p>510 907 9804</p>
+        <p><a href="mailto:info@ModEnergySystems.com">info@ModEnergySystems.com</a>  </p>
+        </div>
 
     );
   }

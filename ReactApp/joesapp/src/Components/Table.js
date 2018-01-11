@@ -1,5 +1,6 @@
 import React from 'react'
 import { get, put } from 'axios'
+import ip from './ip.json'
 
 class Table extends React.Component {
   constructor(props){
@@ -26,8 +27,7 @@ class Table extends React.Component {
   }
 
   updatedata = () => {
-    // var config = require('./tristar.json');
-    let uri= 'http://localhost:5000/rawdata';
+    let uri= 'http://'+ ip.ip +':5000/rawdata';
     get(uri)
     .then((payload) => {
       console.log(payload,this.state)
@@ -37,8 +37,10 @@ class Table extends React.Component {
 
   render() {
     return ( <
-      div >
-      {this.state.Time}
+      div ><
+      p className = "time" >
+      {this.state.Connection} – LAST CALL: {this.state.Date} at {this.state.Time}<
+      /p >
       <
       table >
       <
@@ -87,12 +89,12 @@ class Table extends React.Component {
       tr >
       <
       td > Battery < /td> <
-      td > {this.state.Battery_Temp} °C< /td> <
+      td > {this.state.Battery_TempF} °F< /td> <
       /tr> <
       tr >
       <
       td > Heat Sink < /td> <
-      td > {this.state.Heatsink_Temp} °C< /td> <
+      td > {this.state.Heatsink_TempF} °F< /td> <
       /tr> <
       /table> <
       p > < /p> <
@@ -117,7 +119,35 @@ class Table extends React.Component {
       td > Array Power < /td> <
       td > {this.state.Solar_Power} W< /td> <
       /tr> <
+      tr >
+      <
+      td > Energy Today < /td> <
+      td > {this.state.Produced_Today} Wh< /td> <
+      /tr> <
       /table> <
+      p > < /p> <
+      table className = "table" >
+      <
+      tr >
+      <
+      th colspan = "2" > Flags & Warnings < /th> <
+      /tr> <
+      tr >
+      <
+      td > Daily Flags < /td> <
+      td > {this.state.Daily_Flags} < /td> <
+      /tr> <
+      tr >
+      <
+      td > Faults < /td> <
+      td > {this.state.Faults} < /td> <
+      /tr> <
+      tr >
+      <
+      td > Alarms < /td> <
+      td > {this.state.Alarms} < /td> <
+      /tr> <
+      /table><
       /div>
     )
   }
