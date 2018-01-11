@@ -1,4 +1,3 @@
-sudo su
 echo INSTALLING PYTHON PACKAGES...
 sudo pip3 install -r "requirements.txt";
 echo LAUNCHING tristar-json.py...
@@ -57,7 +56,7 @@ echo "
 ▒█▄▄▄█ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀░▀▀ 　 ▒█▄▄█ ▀▀▀▀ ▒█▄▄█ ▀▀▀▀
 
 "
-sleep 5;
+sleep 2;
 npm start;
 
 
