@@ -37,8 +37,10 @@ class Table extends React.Component {
 
   render() {
     return ( <
-      div >
-      {this.state.Time}
+      div ><
+      p className = "time" >
+      LAST CALL: {this.state.Date} at {this.state.Time}<
+      /p >
       <
       table >
       <
@@ -49,7 +51,7 @@ class Table extends React.Component {
       tr >
       <
       td > Battery State of Charge < /td> <
-      td > {this.state.Battery_SOC} < /td> <
+      td > {this.state.Battery_SOC} % < /td> <
       /tr> <
       tr >
       <
@@ -87,12 +89,12 @@ class Table extends React.Component {
       tr >
       <
       td > Battery < /td> <
-      td > {this.state.Battery_Temp} °C< /td> <
+      td > {this.state.Battery_TempF} °F< /td> <
       /tr> <
       tr >
       <
       td > Heat Sink < /td> <
-      td > {this.state.Heatsink_Temp} °C< /td> <
+      td > {this.state.Heatsink_TempF} °F< /td> <
       /tr> <
       /table> <
       p > < /p> <
@@ -117,7 +119,35 @@ class Table extends React.Component {
       td > Array Power < /td> <
       td > {this.state.Solar_Power} W< /td> <
       /tr> <
+      tr >
+      <
+      td > Energy Today < /td> <
+      td > {this.state.Produced_Today} Wh< /td> <
+      /tr> <
       /table> <
+      p > < /p> <
+      table className = "table" >
+      <
+      tr >
+      <
+      th colspan = "2" > Flags & Warnings < /th> <
+      /tr> <
+      tr >
+      <
+      td > Daily Flags < /td> <
+      td > {this.state.flags_daily} < /td> <
+      /tr> <
+      tr >
+      <
+      td > Faults < /td> <
+      td > {this.state.Faults} < /td> <
+      /tr> <
+      tr >
+      <
+      td > Alarms < /td> <
+      td > {this.state.Alarms} < /td> <
+      /tr> <
+      /table><
       /div>
     )
   }
