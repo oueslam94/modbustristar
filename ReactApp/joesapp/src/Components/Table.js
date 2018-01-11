@@ -49,7 +49,7 @@ class Table extends React.Component {
       tr >
       <
       td > Battery State of Charge < /td> <
-      td > {this.state.Battery_SOC} % < /td> <
+      td > {this.state.Battery_SOC} < /td> <
       /tr> <
       tr >
       <

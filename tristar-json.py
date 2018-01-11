@@ -90,7 +90,7 @@ while True:
 
     # Populate values
         values["Time"] = (st)
-        values["Battery_SOC"] = round((led[led_state]),2)
+        values["Battery_SOC"] = (led[led_state])
         values["Battery_Voltage"] = round((battsV),2)
         values["Battery_Sensed_Voltage"] = round((battsSensedV),2)
         values["Battery_Target_Voltage"] = round((battsTargetV),2)
