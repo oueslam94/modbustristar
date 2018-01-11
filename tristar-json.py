@@ -90,22 +90,22 @@ while True:
 
     # Populate values
         values["Time"] = (st)
-        values["Battery_SOC"] = (led[led_state])
-        values["Battery_Voltage"] = (battsV)
-        values["Battery_Sensed_Voltage"] = (battsSensedV)
-        values["Battery_Target_Voltage"] = (battsTargetV)
-        values["Battery_Current"] = (battsI)
+        values["Battery_SOC"] = round((led[led_state]),2)
+        values["Battery_Voltage"] = round((battsV),2)
+        values["Battery_Sensed_Voltage"] = round((battsSensedV),2)
+        values["Battery_Target_Voltage"] = round((battsTargetV),2)
+        values["Battery_Current"] = round((battsI),2)
         values["Charge_State"] = (state[statenum])
-        values["Battery_Power"] = (battsW)
-        values["Battery_Voltage"] = (battsV)
-        values["RTS_Temp"] = (rtsTemp)
-        values["Heatsink_Temp"] = (hsTemp)
-        values["Battery_Temp"] = (batTemp)
-        values["Solar_Voltage"] = (arrayV)
-        values["Solar_Current"] = (arrayI)
-        values["Solar_Power"] = (arrayW)
+        values["Battery_Power"] = round((battsW),2)
+        values["Battery_Voltage"] = round((battsV),2)
+        values["RTS_Temp"] = round((rtsTemp),2)
+        values["Heatsink_Temp"] = round((hsTemp),2)
+        values["Battery_Temp"] = round((batTemp),2)
+        values["Solar_Voltage"] = round((arrayV),2)
+        values["Solar_Current"] = round((arrayI),2)
+        values["Solar_Power"] = round((arrayW),2)
 
-        with open('tristar.json', 'w') as fp:
+        with open('ReactApp/joesapp/src/Components/tristar.json', 'w') as fp:
             json.dump(values, fp)
 
         time.sleep(10)

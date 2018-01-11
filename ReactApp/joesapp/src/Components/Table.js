@@ -1,10 +1,12 @@
 import React from 'react'
+import { get, put } from 'axios'
+
 class Table extends React.Component {
   constructor(props){
     super(props)
     this.state = {
   }
-  this.updateAur = this.updateAur.bind(this)
+  this.updatedata = this.updatedata.bind(this)
 
 
 }
@@ -12,8 +14,8 @@ class Table extends React.Component {
   componentDidMount() {
     // componentDidMount is called by react when the component
     // has been rendered on the page. We can set the interval here:
-    this.updateAur()
-    // this.timer = setInterval(this.updateAur, 500);
+    this.updatedata()
+    this.timer = setInterval(this.updatedata, 2000);
   }
 
   componentWillUnmount() {
@@ -23,10 +25,14 @@ class Table extends React.Component {
     // clearInterval(this.timer);
   }
 
-  updateAur = () => {
-    var config = require('./tristar.json');
-    console.log(config,this.state)
-    this.setState({...config})
+  updatedata = () => {
+    // var config = require('./tristar.json');
+    let uri= 'http://localhost:5000/rawdata';
+    get(uri)
+    .then((payload) => {
+      console.log(payload,this.state)
+    this.setState({...payload.data})
+  })
   }
 
   render() {
@@ -43,22 +49,22 @@ class Table extends React.Component {
       tr >
       <
       td > Battery State of Charge < /td> <
-      td > {this.state.Battery_SOC} < /td> <
+      td > {this.state.Battery_SOC} % < /td> <
       /tr> <
       tr >
       <
       td > Battery Voltage < /td> <
-      td > {this.state.Battery_Voltage} < /td> <
+      td > {this.state.Battery_Voltage} V < /td> <
       /tr> <
       tr >
       <
       td > Target Voltage < /td> <
-      td > {this.state.Battery_Target_Voltage} < /td> <
+      td > {this.state.Battery_Target_Voltage} V< /td> <
       /tr> <
       tr >
       <
       td > Charge Current < /td> <
-      td > {this.state.Battery_Current} < /td> <
+      td > {this.state.Battery_Current} A< /td> <
       /tr> <
       tr >
       <
@@ -68,7 +74,7 @@ class Table extends React.Component {
       tr >
       <
       td > Output Power < /td> <
-      td > {this.state.Battery_Power} < /td> <
+      td > {this.state.Battery_Power} W< /td> <
       /tr> <
       /table> <
       p > < /p> <
@@ -81,12 +87,12 @@ class Table extends React.Component {
       tr >
       <
       td > Battery < /td> <
-      td > {this.state.Battery_Temp} < /td> <
+      td > {this.state.Battery_Temp} °C< /td> <
       /tr> <
       tr >
       <
       td > Heat Sink < /td> <
-      td > {this.state.Heatsink_Temp} < /td> <
+      td > {this.state.Heatsink_Temp} °C< /td> <
       /tr> <
       /table> <
       p > < /p> <
@@ -99,17 +105,17 @@ class Table extends React.Component {
       tr >
       <
       td > Array Voltage < /td> <
-      td > {this.state.Solar_Voltage} < /td> <
+      td > {this.state.Solar_Voltage} V< /td> <
       /tr> <
       tr >
       <
       td > Array Current < /td> <
-      td > {this.state.Solar_Current} < /td> <
+      td > {this.state.Solar_Current} A< /td> <
       /tr> <
       tr >
       <
       td > Array Power < /td> <
-      td > {this.state.Solar_Power} < /td> <
+      td > {this.state.Solar_Power} W< /td> <
       /tr> <
       /table> <
       /div>
