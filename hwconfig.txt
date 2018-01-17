@@ -1,0 +1,5 @@
+#Project Specific Info
+host= '10.0.0.21' #home 10.0.0.21   GSM modem 192.168.1.129
+port = 502
+product = "Tristar MPPT 60A"
+hostname = "TSMPPT16500060"

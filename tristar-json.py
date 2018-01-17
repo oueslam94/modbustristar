@@ -3,17 +3,15 @@ import time
 import datetime
 import webbrowser
 import json
+import hwconfig
 
 # TCP auto connect on modbus request, close after it
-
-host= '10.0.0.21' #home 10.0.0.21   ES Lab 192.
-port = 502
-client = ModbusClient(host, port, timeout=10, unit_id=1, auto_open=True, auto_close=True)
+client = ModbusClient(hwconfig.host, hwconfig.port, timeout=10, unit_id=1, auto_open=True, auto_close=True)
 
 # Define the State list
 state = ['Start', 'Night Check', 'Disconnected', 'Night', 'Fault!', 'MPPT', 'Absorption', 'FloatCharge', 'Equalizing', 'Slave']
 faults = ['no faults', 'overcurrent', 'FETs shorted', 'software bug', 'battery HVD', 'array HVD', 'settings switch changed', 'custom settings edit', 'RTS shorted', 'RTS disconnected', 'EEPROM rety limit', 'reserved', 'slave control timeout']
-led = ['LED start', 'LED start 2', 'LED branch', 'fast green blink', 'slow green blink', 'green blink 1Hz', 'Green 80%', 'Green-Yellow 50%', 'yellow 20%','Yellow-Red 0%', 'blink red', 'red', 'R-Y-G error', 'R/Y-G error', 'R/G-Y error', ' HTD R-Y error', 'HVD R-G error', 'R/Y-G/Y error', 'G/Y/R error', 'G/Y/R x2']
+led = ['LED start', 'LED start 2', 'LED branch', 'Equalization State', 'Absorption States', 'Floar State', '80%+ Green', '60%+ Green-Yellow', '35%+ yellow','0%+ Yellow-Red', 'blink red', '<0% red', 'Dip switch changed, restart', 'Battery Over-Current', 'R/G-Y error', ' High Temp Defence', 'HHigh Voltage Defence', 'R/Y-G/Y error', 'G/Y/R error', 'G/Y/R x2']
 flags_daily = ['reset detected', 'equalize triggered', 'enter float', 'alarm occured', 'fault occured']
 # read registers. Start at 0 for convenience
 
@@ -54,7 +52,7 @@ while True:
         values["Faults"] = '...'
         values["Alarms"] = '...'
         values["Produced_Today"] = '...'
-        values["Daily Flags"] = '...'
+        values["Daily_Flags"] = '...'
 
 
         with open('ReactApp/joesapp/src/Components/tristar.json', 'w') as fp:
@@ -110,7 +108,7 @@ while True:
         values["Date"] = (sd)
         values["Time"] = (st)
         values["Connection"] = 'Online'
-    #Battery
+    # Battery
         values["Battery_SOC"] = (led[led_state])
         values["Battery_Voltage"] = round((battsV),2)
         values["Battery_Sensed_Voltage"] = round((battsSensedV),2)
@@ -122,7 +120,7 @@ while True:
         values["RTS_Temp"] = round((rtsTemp),2)
         values["Heatsink_Temp"] = round((hsTemp),2)
         values["Battery_Temp"] = round((batTemp),2)
-        values["RTS_TempF"] = round(((rtsTemp * 1.8) + 32),1)  #(Fahrenheit - 32) * 5.0/9.0
+        values["RTS_TempF"] = round(((rtsTemp * 1.8) + 32),1)  #(Celcius - 32) * 5.0/9.0
         values["Heatsink_TempF"] = round(((hsTemp * 1.8) + 32),1)
         values["Battery_TempF"] = round(((batTemp * 1.8) + 32),1)
     # Solar Array
@@ -140,19 +138,3 @@ while True:
 
         time.sleep(10)
 
-    '''
-        f = open('tristar.js', 'w')
-        newdata = json.dumps(values)
-        print (newdata)
-        message = """
-
-            <script type="text/javascript">
-            <p className="App-intro">
-              Below are the details for your system. {}, {}, {}
-            </p>
-            </script>
-        """
-        .format(st, led[led_state], battsV, battsSensedV, battsI, state[statenum], battsW, rtsTemp, hsTemp, arrayV, arrayI, arrayW)
-        f.write(message)
-        f.close()
-    '''
